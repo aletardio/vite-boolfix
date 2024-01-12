@@ -21,7 +21,19 @@ export default {
   },
   methods: {
     searchMovies() {
-      axios.get(this.store.endpointMovie).then((response) => {
+
+      console.log(this.store.search);
+
+      let apiUrl = this.store.endpointMovie;
+
+      if(this.store.search !== '') {
+        apiUrl += `${this.store.search}`
+      }
+
+      console.log(apiUrl);
+
+      axios.get(apiUrl).then((response) => {
+        console.log(response.data.results);
         this.store.movies = response.data.results;
       })
     }
@@ -30,8 +42,8 @@ export default {
 </script>
 <template lang="">
   <div>
-    <AppHeader />
-    <AppMain @movie_searched = searchMovies />
+    <AppHeader @movie_searched = searchMovies />
+    <AppMain />
   </div>
 </template>
 <style lang="scss">

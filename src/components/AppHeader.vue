@@ -1,6 +1,7 @@
 <script>
 
 import { store } from "../store";
+import axios from 'axios';
 
 export default {
     name: 'AppHeader',
@@ -9,6 +10,14 @@ export default {
             store
         }
     },
+    methods: {
+    searchMovies() {
+      axios.get(this.store.endpointMovie).then((response) => {
+        console.log(response.data.results);
+        this.store.movies = response.data.results;
+      })
+    }
+  }
 }
 </script>
 <template lang="">
@@ -20,8 +29,8 @@ export default {
                 </div>
                 <div class="col-3 d-flex align-items-center justify-content-end">
                     <div class="input-group mb-3">
-                        <input v-model="store.search" type="text" class="form-control" placeholder="Titoli, persone, generi" aria-label="Titoli, persone, generi" aria-describedby="button-addon2">
-                        <button @keyup.enter="searchMovies()" class="btn btn-danger" type="button" id="button-addon2" @change="$emit('movie_searched')">Cerca</button>
+                        <input v-model="store.search" type="text" class="form-control" placeholder="Titoli, persone, generi" aria-label="Titoli, persone, generi" aria-describedby="button-addon2" @keyup.enter="$emit('movie_searched')">
+                        <button class="btn btn-danger" type="button" id="button-addon2">Cerca</button>
                     </div>
                 </div>
             </div>
