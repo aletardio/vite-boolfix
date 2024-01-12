@@ -1,15 +1,29 @@
 <script>
 
 import AppHeader from './components/AppHeader.vue';
+import AppMain from './components/AppMain.vue';
+
+import axios from 'axios';
 import { store } from './store.js'
 
 export default {
   components: {
-    AppHeader
+    AppHeader,
+    AppMain
   },
   data() {
     return {
       store
+    }
+  },
+  created() {
+    this.searchMovies();
+  },
+  methods: {
+    searchMovies() {
+      axios.get(this.store.endpointMovie).then((response) => {
+        this.store.movies = response.data.results;
+      })
     }
   },
 }
@@ -17,6 +31,7 @@ export default {
 <template lang="">
   <div>
     <AppHeader />
+    <AppMain @movie_searched = searchMovies />
   </div>
 </template>
 <style lang="scss">

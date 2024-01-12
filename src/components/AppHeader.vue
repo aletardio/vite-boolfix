@@ -1,6 +1,14 @@
 <script>
+
+import { store } from "../store";
+
 export default {
-    name: 'AppHeader'
+    name: 'AppHeader',
+    data() {
+        return {
+            store
+        }
+    },
 }
 </script>
 <template lang="">
@@ -12,8 +20,8 @@ export default {
                 </div>
                 <div class="col-3 d-flex align-items-center justify-content-end">
                     <div class="input-group mb-3">
-                        <input type="text" class="form-control" placeholder="Titoli, persone, generi" aria-label="Titoli, persone, generi" aria-describedby="button-addon2">
-                        <button class="btn btn-danger" type="button" id="button-addon2">Cerca</button>
+                        <input v-model="store.search" type="text" class="form-control" placeholder="Titoli, persone, generi" aria-label="Titoli, persone, generi" aria-describedby="button-addon2">
+                        <button @keyup.enter="searchMovies()" class="btn btn-danger" type="button" id="button-addon2" @change="$emit('movie_searched')">Cerca</button>
                     </div>
                 </div>
             </div>
