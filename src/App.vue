@@ -16,10 +16,10 @@ export default {
 </script>
 <template lang="">
   <div>
-    
+    <AppHeader />
   </div>
 </template>
 <style lang="scss">
-  @use './styles/generals.scss' as *;
-  @use './styles/partials/variables' as *;
+@use './styles/generals.scss' as *;
+@use './styles/partials/variables' as *;
 </style>
