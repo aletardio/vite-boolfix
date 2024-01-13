@@ -24,17 +24,21 @@ export default {
 
       console.log(this.store.search);
 
-      let apiUrl = this.store.endpointMovie;
+      let apiUrlMovie = this.store.endpointMovie;
+      let apiUrlTv = this.store.endpointTv;
+
+      apiUrlMovie += apiUrlTv;
 
       if(this.store.search !== '') {
-        apiUrl += `${this.store.search}`
+        apiUrlMovie += `${this.store.search}`;
+        apiUrlTv += `${this.store.search}`;
       }
 
-      console.log(apiUrl);
+      console.log(apiUrlMovie);
 
-      axios.get(apiUrl).then((response) => {
+      axios.get(apiUrlMovie).then((response) => {
         console.log(response.data.results);
-        this.store.movies = response.data.results;
+        this.store.titles = response.data.results;
       })
     }
   },
