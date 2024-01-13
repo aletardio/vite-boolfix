@@ -24,7 +24,7 @@ data() {
                 <div class="box-films" v-for="title, index in store.titles" :key="index">
                     <h4> {{ title.title }}</h4>
                     <p><strong>Titolo Originale:</strong> {{ title.original_title }}</p>
-                    <div class="d-flex justify-content-center">
+                    <div class="d-flex justify-content-center py-4">
                         <country-flag v-if="title.original_language == 'en'" country='gb' size='normal'/>
                         <country-flag v-else :country=title.original_language size='normal'/>
                     </div>
