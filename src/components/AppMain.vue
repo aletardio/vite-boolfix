@@ -22,13 +22,14 @@ data() {
         <div class="container">
             <div class="row">
                 <div class="box-films" v-for="title, index in store.titles" :key="index">
+                    <img :src="store.cover + title.poster_path" alt="">
                     <h4> {{ title.title }}</h4>
-                    <p><strong>Titolo Originale:</strong> {{ title.original_title }}</p>
-                    <div class="d-flex justify-content-center py-4">
+                    <div>{{ title.original_title }}</div>
+                    <div class="d-flex justify-content-center">
                         <country-flag v-if="title.original_language == 'en'" country='gb' size='normal'/>
                         <country-flag v-else :country=title.original_language size='normal'/>
                     </div>
-                    <p><strong>Voto:</strong> {{ title.vote_average }}</p>
+                    <div>{{ title.vote_average }}</div>
                 </div>
             </div>
         </div>
@@ -39,7 +40,7 @@ data() {
         width: calc(100% / 5 - 20px);
         margin: 10px;
 
-        h4, p {
+        h4, div {
             text-align: center;
             color: #fff;
         }
