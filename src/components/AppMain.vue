@@ -11,15 +11,25 @@ export default {
 
 data() {
     return {
-        store
+        store,
     }
+},
+methods: {
+    transformRating(rating) {
+      const roundedRating = Math.ceil(rating / 2);
+
+      const stars = '<i class="fa-solid fa-star"></i>'.repeat(roundedRating);
+      const emptyStars = '<i class="fa-regular fa-star"></i>'.repeat(5 - roundedRating);
+
+      return stars + emptyStars;
+    },
 },
 
 }
 </script>
 <template lang="">
     <main>
-        <div class="container">
+        <div class="container-fluid">
             <div class="row">
                 <div class="box-films" v-for="title, index in store.titles" :key="index">
                     <img :src="store.cover + title.poster_path" alt="">
@@ -29,7 +39,7 @@ data() {
                         <country-flag v-if="title.original_language == 'en'" country='gb' size='normal'/>
                         <country-flag v-else :country=title.original_language size='normal'/>
                     </div>
-                    <div>{{ title.vote_average }}</div>
+                    <div>{{ transformRating(title.vote_average) }}</div>
                 </div>
             </div>
         </div>
@@ -44,8 +54,5 @@ data() {
             text-align: center;
             color: #fff;
         }
-
-        
-
     }
 </style>
