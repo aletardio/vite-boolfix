@@ -51,12 +51,13 @@ methods: {
                     @mouseover="flipCard(index, true)"
                     @mouseleave="flipCard(index, false)"
                     v-bind:class="{ flipme: cardOne == index }">
-                    <div class="card__face card__face--back"><h4> {{ title.title }}</h4>
+                    <div class="card__face card__face--back p-2"><h4> {{ title.title }}</h4>
                     <div>{{ title.original_title }}</div>
-                    <div class="d-flex justify-content-center">
+                    <div class="d-flex justify-content-center py-2">
                         <country-flag v-if="title.original_language == 'en'" country='gb' size='normal'/>
                         <country-flag v-else :country=title.original_language size='normal'/>
                     </div>
+                    <div class="p-1"> {{ title.overview }} </div>
                     <div>{{ transformRating(title.vote_average) }}</div></div>
                     <div class="card__face card__face--front"><img :src="store.cover + title.poster_path" alt=""></div>
                 </div>
@@ -80,44 +81,49 @@ methods: {
 
     .scene {
     width: 20%;
-    height: 500px;
+    height: 475px;
     margin: 40px 0;
     perspective: 600px;
 }
 
-.card {
-  width: 100%;
-  height: 100%;
-  transition: transform 1s;
-  transform-style: preserve-3d;
-  cursor: pointer;
-  position: relative;
-}
+    .card {
+    width: 100%;
+    height: 100%;
+    transition: transform 1s;
+    transform-style: preserve-3d;
+    cursor: pointer;
+    position: relative;
+    }
 
-.card__face {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  line-height: 260px;
-  color: white;
-  text-align: center;
-  font-weight: bold;
-  font-size: 40px;
-  backface-visibility: hidden;
-}
+    .card__face {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    color: white;
+    text-align: center;
+    font-weight: bold;
+    font-size: 12px;
+    backface-visibility: hidden;
+    }
 
-.card__face--front {
-  background: red;
-}
+    .card__face--front {
+        background-color: transparent;
+        img {
+            height: 100%;
+            width: 100%;
+            border-radius: 5px;
+        }
+    }
 
-.card__face--back {
-  background: blue;
-  transform: rotateY(180deg);
-}
+    .card__face--back {
+        border-radius: 5px;
+        background: #272626;
+        transform: rotateY(180deg);
+    }
 
-/* this style is applied when the card is clicked */
-.flipme {
-  transform: rotateY(180deg);
-}
+    /* this style is applied when the card is clicked */
+    .flipme {
+    transform: rotateY(180deg);
+    }
 
 </style>
