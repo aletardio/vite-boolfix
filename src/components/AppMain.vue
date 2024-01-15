@@ -18,10 +18,12 @@ data() {
 methods: {
     transformRating(rating) {
         const roundedRating = Math.ceil(rating / 2);
-        const filledStars = '<i class="text-light fa fa-star"></i>'.repeat(roundedRating);
-        const emptyStars = '<i class="text-light far fa-star"></i>'.repeat(5 - roundedRating);
+        const filledStars = (roundedRating);
+        const emptyStars = (5 - roundedRating);
 
-        return filledStars + emptyStars;
+        const result = {filledStars:filledStars, emptyStars:emptyStars};
+
+        return result;
     },
     flipCard(index,isOver) {
         this.cardOne = isOver ? index : null;
@@ -57,8 +59,16 @@ methods: {
                         <country-flag v-else :country=title.original_language size='normal'/>
                     </div>
                     <div class="p-1"> {{ title.overview }} </div>
-                    <div>{{ transformRating(title.vote_average) }}</div></div>
-                    <div class="card__face card__face--front"><img :src="store.cover + title.poster_path" alt=""></div>
+                    <div class="d-flex justify-content-center">
+                        <div v-for="stars, index in transformRating(title.vote_average).filledStars":key="index"><i class="text-light fa-solid fa-star"></i></div>
+                        <div v-if="transformRating(title.vote_average).emptyStars > 0">
+                            <div v-for="stars, index in transformRating(title.vote_average).emptyStars">
+                                <i class=" text-light fa-regular fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                    <div class="card__face card__face--front"><img :src="store.cover + title.poster_path" alt="title.title"></div>
                 </div>
                 </div>
                 
@@ -118,6 +128,7 @@ methods: {
         border-radius: 5px;
         background: #272626;
         transform: rotateY(180deg);
+        overflow-y: auto;
     }
 
     /* this style is applied when the card is clicked */
