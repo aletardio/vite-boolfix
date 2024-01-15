@@ -17,12 +17,11 @@ data() {
 },
 methods: {
     transformRating(rating) {
-      const roundedRating = Math.ceil(rating / 2);
+        const roundedRating = Math.ceil(rating / 2);
+        const filledStars = '<i class="text-light fa fa-star"></i>'.repeat(roundedRating);
+        const emptyStars = '<i class="text-light far fa-star"></i>'.repeat(5 - roundedRating);
 
-      const stars = '<i class="fa fa-star"></i>'.repeat(roundedRating);
-      const emptyStars = '<i class="far fa-star"></i>'.repeat(5 - roundedRating);
-
-      return stars + emptyStars;
+        return filledStars + emptyStars;
     },
     flipCard(index,isOver) {
         this.cardOne = isOver ? index : null;
@@ -80,30 +79,30 @@ methods: {
     // }
 
     .scene {
-    width: 20%;
-    height: 475px;
-    margin: 40px 0;
-    perspective: 600px;
-}
+        width: 20%;
+        height: 475px;
+        margin: 40px 0;
+        perspective: 600px;
+    }
 
     .card {
-    width: 100%;
-    height: 100%;
-    transition: transform 1s;
-    transform-style: preserve-3d;
-    cursor: pointer;
-    position: relative;
+        width: 100%;
+        height: 100%;
+        transition: transform 1s;
+        transform-style: preserve-3d;
+        cursor: pointer;
+        position: relative;
     }
 
     .card__face {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    color: white;
-    text-align: center;
-    font-weight: bold;
-    font-size: 12px;
-    backface-visibility: hidden;
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        color: white;
+        text-align: center;
+        font-weight: bold;
+        font-size: 12px;
+        backface-visibility: hidden;
     }
 
     .card__face--front {
@@ -123,7 +122,7 @@ methods: {
 
     /* this style is applied when the card is clicked */
     .flipme {
-    transform: rotateY(180deg);
+        transform: rotateY(180deg);
     }
 
 </style>
