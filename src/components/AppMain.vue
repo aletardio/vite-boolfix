@@ -36,31 +36,29 @@ methods: {
     <main>
         <div class="container-fluid">
             <div class="row">
-                <!-- <div class="box-films" v-for="title, index in store.titles" :key="index">
-                    <img :src="store.cover + title.poster_path" alt="">
-                    <h4> {{ title.title }}</h4>
-                    <div>{{ title.original_title }}</div>
-                    <div class="d-flex justify-content-center">
-                        <country-flag v-if="title.original_language == 'en'" country='gb' size='normal'/>
-                        <country-flag v-else :country=title.original_language size='normal'/>
-                    </div>
-                    <div>{{ transformRating(title.vote_average) }}</div>
-                </div> -->
-
                 <div class="scene scene--card" v-for="title, index in store.titles" :key="index">
+                    <!-- Flip Carte -->
                 <div class="card"
                     @mouseover="flipCard(index, true)"
                     @mouseleave="flipCard(index, false)"
                     v-bind:class="{ flipme: cardOne == index }">
-                    <div class="card__face card__face--back p-2"><h4> {{ title.title }}</h4>
+
+                    <!-- Card Retro -->
+                    <div class="card__face card__face--back p-3"><h4> {{ title.title }}</h4>
+                        <!-- Titolo -->
                     <div>{{ title.original_title }}</div>
                     <div class="d-flex justify-content-center py-2">
+                        <!-- Titolo originale -->
                         <country-flag v-if="title.original_language == 'en'" country='gb' size='normal'/>
                         <country-flag v-else :country=title.original_language size='normal'/>
                     </div>
+                    <!-- Descrizione -->
                     <div class="p-1"> {{ title.overview }} </div>
+                    <!-- Voto -->
                     <div class="d-flex justify-content-center">
-                        <div v-for="stars, index in transformRating(title.vote_average).filledStars":key="index"><i class="text-light fa-solid fa-star"></i></div>
+                        <div v-for="stars, index in transformRating(title.vote_average).filledStars":key="index">
+                            <i class="text-light fa-solid fa-star"></i>
+                        </div>
                         <div v-if="transformRating(title.vote_average).emptyStars > 0">
                             <div v-for="stars, index in transformRating(title.vote_average).emptyStars">
                                 <i class=" text-light fa-regular fa-star"></i>
@@ -68,7 +66,12 @@ methods: {
                         </div>
                     </div>
                 </div>
-                    <div class="card__face card__face--front"><img :src="store.cover + title.poster_path" alt="title.title"></div>
+                
+                    <!-- Card Avanti -->
+                    <div class="card__face card__face--front">
+                        <!-- Cover -->
+                        <img :src="store.cover + title.poster_path" alt="title.title">
+                    </div>
                 </div>
                 </div>
                 
@@ -78,15 +81,6 @@ methods: {
     </main>
 </template>
 <style lang="scss" scoped>
-    // .box-films {
-    //     width: calc(100% / 5 - 20px);
-    //     margin: 10px;
-
-    //     h4, div {
-    //         text-align: center;
-    //         color: #fff;
-    //     }
-    // }
 
     .scene {
         width: 20%;
