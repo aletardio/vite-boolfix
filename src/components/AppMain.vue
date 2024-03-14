@@ -45,27 +45,27 @@ methods: {
 
                     <!-- Card Retro -->
                     <div class="card__face card__face--back p-3"><h4> {{ title.title }}</h4>
-                        <!-- Titolo -->
-                    <div>{{ title.original_title }}</div>
-                    <div class="d-flex justify-content-center py-2">
-                        <!-- Titolo originale -->
-                        <country-flag v-if="title.original_language == 'en'" country='gb' size='normal'/>
-                        <country-flag v-else :country=title.original_language size='normal'/>
-                    </div>
-                    <!-- Descrizione -->
-                    <div class="p-1"> {{ title.overview }} </div>
-                    <!-- Voto -->
-                    <div class="d-flex justify-content-center">
-                        <div v-for="stars, index in transformRating(title.vote_average).filledStars":key="index">
-                            <i class="text-light fa-solid fa-star"></i>
+                            <!-- Titolo -->
+                        <div>{{ title.original_title }}</div>
+                        <div class="d-flex justify-content-center py-2">
+                            <!-- Titolo originale -->
+                            <country-flag v-if="title.original_language == 'en'" country='gb' size='normal'/>
+                            <country-flag v-else :country=title.original_language size='normal'/>
                         </div>
-                        <div v-if="transformRating(title.vote_average).emptyStars > 0">
-                            <div v-for="stars, index in transformRating(title.vote_average).emptyStars">
-                                <i class=" text-light fa-regular fa-star"></i>
+                        <!-- Descrizione -->
+                        <div class="p-1"> {{ title.overview }} </div>
+                        <!-- Voto -->
+                        <div class="d-flex justify-content-center">
+                            <div v-for="stars, index in transformRating(title.vote_average).filledStars":key="index">
+                                <i class="text-light fa-solid fa-star"></i>
+                            </div>
+                            <div v-if="transformRating(title.vote_average).emptyStars > 0">
+                                <div v-for="stars, index in transformRating(title.vote_average).emptyStars">
+                                    <i class=" text-light fa-regular fa-star"></i>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
                 
                     <!-- Card Avanti -->
                     <div class="card__face card__face--front">

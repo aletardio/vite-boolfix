@@ -27,7 +27,6 @@ export default {
       let apiUrlMovie = this.store.endpointMovie;
       let apiUrlTv = this.store.endpointTv;
 
-      apiUrlMovie += apiUrlTv;
 
       if(this.store.search !== '') {
         apiUrlMovie += `${this.store.search}`;
@@ -39,7 +38,12 @@ export default {
       axios.get(apiUrlMovie).then((response) => {
         console.log(response.data.results);
         this.store.titles = response.data.results;
-      })
+      });
+
+      axios.get(apiUrlTv).then((response) => {
+        console.log(response.data.results);
+        this.store.titles = response.data.results;
+      });
     }
   },
 }
